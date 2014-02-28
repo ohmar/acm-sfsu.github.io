@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>ACM at SFSU</title><link href="http://acm-sfsu.github.io/" rel="alternate"></link><link href="http://acm-sfsu.github.io/feeds/all.atom.xml" rel="self"></link><id>http://acm-sfsu.github.io/</id><updated>2014-02-18T00:00:00-08:00</updated><entry><title>Blogging about blogs</title><link href="http://acm-sfsu.github.io/blogging-about-blogs.html" rel="alternate"></link><updated>2014-02-18T00:00:00-08:00</updated><author><name>Tom Spalding</name></author><id>tag:acm-sfsu.github.io,2014-02-18:blogging-about-blogs.html</id><summary type="html">&lt;p&gt;It is the first post with our new blog, we're upgrading our infrastructure, and have lots of upcoming events. Let me give a brief overview of what's up. &lt;/p&gt;
+&lt;h1&gt;HAI&lt;/h1&gt;
+&lt;p&gt;It's a new exciting semester! We had a great turnout to the general meeting (thanks &lt;a href="http://marcsosnick.com"&gt;Marc&lt;/a&gt;!) And we just had had our first Python workshop utilizing the Udacity course &lt;a href="https://www.udacity.com/course/cs101"&gt;Intro to Computer Science&lt;/a&gt; taught by Professor Dave Evans. &lt;/p&gt;
+&lt;p&gt;Be sure to come out to our next workshop Intro to Android Mobile App Development on Friday 2-21. Download the IDE we’ll be using &lt;a href="http://developer.android.com/sdk/index.html"&gt;here&lt;/a&gt; and &lt;code&gt;git&lt;/code&gt; the demo &lt;a href="https://github.com/acm-sfsu/androidHelloWorld"&gt;here&lt;/a&gt;. Also, please check out Professor Puder’s &lt;a href="http://pear.sfsu.edu/csc780/tutorial"&gt;Android tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;See our other upcoming events at &lt;a href="/calendar"&gt;sfsu.acm.org/calendar&lt;/a&gt;. Events include a &lt;a href="http://www.buttonsmashingnight.com"&gt;Button Smashing Night&lt;/a&gt; at &lt;a href="http://www.20mission.com"&gt;20mission&lt;/a&gt;, an Intelligence Community Virtual Career Fair, a guest speaker from Twitter, an Intro to Open Source, a Raspberry Pi &amp;amp; Arduino Meetup, and more!&lt;/p&gt;
+&lt;h1&gt;Blog&lt;/h1&gt;
+&lt;p&gt;Now that the shameless plugs are over with, I thought I'd post about what just happened to the site. We just &lt;a href="https://github.com/acm-sfsu/IRC-Bot"&gt;forked paullik's IRC-Bot&lt;/a&gt; to sit in our &lt;a href="http://webchat.freenode.net/?channels=acm-sfsu"&gt;#acm-sfsu&lt;/a&gt; IRC channel, and thought we'd keep up with the Python theme. So, we used the static site generator &lt;a href="http://blog.getpelican.com"&gt;Pelican&lt;/a&gt; which is very similar in process to &lt;a href="http://jekyllrb.com"&gt;Jekyll&lt;/a&gt;. Btw, we will be doing a lightning presentation on both Jekyll and Pelican &lt;a href="/calendar"&gt;soon&lt;/a&gt;, if any of you are interested in leveraging these. Come out and learn to blog like a hacker! &lt;/p&gt;
+&lt;p&gt;Aside: maybe the shameless plugs aren't quite over with ;)&lt;/p&gt;
+&lt;h2&gt;Pelican&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://getpelican.com"&gt;Pelican&lt;/a&gt; is a static site generator powered by &lt;a href="http://python.org"&gt;Python&lt;/a&gt;! and is very similar in implementation as &lt;a href="http://jekyllrb.com"&gt;Jekyll&lt;/a&gt;. Since we're into social coding, I'd like to use this blog post as a mini-tutorial. So, if you are indeed using this as a tutorial, &lt;code&gt;git&lt;/code&gt; Pelican &lt;a href="https://github.com/getpelican/pelican"&gt;here&lt;/a&gt; and read over &lt;a href="http://docs.getpelican.com/en/3.3.0/getting_started.html"&gt;getting started&lt;/a&gt; and using &lt;a href="https://gist.github.com/josefjezek/6053301"&gt;Pelican on Github Pages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Our old blog was made in Wordpress. We used &lt;code&gt;pelican-import&lt;/code&gt; to get the old entries. It has two dependencies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BeautifulSoup &lt;code&gt;pip install BeautifulSoup&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jgm/pandoc"&gt;Pandoc&lt;/a&gt; &lt;code&gt;apt-get pandoc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See: &lt;a href="docs.getpelican.com/en/3.1.1/importer.html"&gt;pelican-import&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Import with &lt;code&gt;pelican-import --wpfile -o content posts.xml&lt;/code&gt; which takes your Wordpress' exported &lt;code&gt;posts.xml&lt;/code&gt; file and makes &lt;a href="http://docutils.sourceforge.net/rst.html"&gt;reStructuredText&lt;/a&gt; (reST) posts of your content in the &lt;code&gt;content&lt;/code&gt; folder. You can use both &lt;a href="http://daringfireball.net/projects/markdown"&gt;Markdown&lt;/a&gt; and reST for writing your posts. &lt;/p&gt;
+&lt;p&gt;Aside: This post is written in Markdown if you were curious.&lt;/p&gt;
+&lt;p&gt;Aside: If you need BeautifulSoup4, &lt;code&gt;pip install BeautifulSoup4&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Generating the site&lt;/h3&gt;
+&lt;p&gt;Run &lt;code&gt;pelican&lt;/code&gt;. This will generate your site in the &lt;code&gt;output&lt;/code&gt; folder by default. It also uses your &lt;code&gt;pelicanconf.py&lt;/code&gt; file by default. See the &lt;a href="http://docs.getpelican.com/en/latest/getting_started.html#basic-usage"&gt;basic usage&lt;/a&gt; for more info such as running &lt;code&gt;pelican -r&lt;/code&gt; to do automatic reloading when you make changes.&lt;/p&gt;
+&lt;p&gt;Aside: Alternately, run &lt;code&gt;make regenerate&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can view the site on your browser by opening the &lt;code&gt;index.html&lt;/code&gt; file in the &lt;code&gt;output&lt;/code&gt; folder. Also, checkout the &lt;a href="http://docs.getpelican.com/en/latest/getting_started.html#kickstart-your-site"&gt;kickstart your blog&lt;/a&gt; section. If you installed &lt;a href="http://fabfile.org"&gt;Fabric&lt;/a&gt;, you can also run these &lt;a href="http://docs.getpelican.com/en/latest/getting_started.html#fabric"&gt;useful commands&lt;/a&gt; for building the site, regenerating, serving, and publishing. Also, you can use &lt;code&gt;make serve&lt;/code&gt; if you used the quick configuration to generate a &lt;code&gt;Makefile&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Theming&lt;/h3&gt;
+&lt;p&gt;This comes with a default theme, you might need to update the &lt;code&gt;RELATIVE_URLS&lt;/code&gt; parameter in the &lt;code&gt;pelicanconf.py&lt;/code&gt; file to utilize your stylesheets etc during development.&lt;/p&gt;
+&lt;p&gt;If you want to play with the themes, you can quickly switch between themes by cloning some sample ones with &lt;code&gt;git clone https://github.com/getpelican/pelican-themes.git themes&lt;/code&gt; and then run pelican with &lt;code&gt;pelican -t /themes/chunk&lt;/code&gt; or edit &lt;code&gt;pelicanconf.py&lt;/code&gt; where it says &lt;code&gt;THEME = "/themes/chunk"&lt;/code&gt; and just run &lt;code&gt;pelican&lt;/code&gt;. Adding a theme submodule is easy with &lt;code&gt;git submodule add https://github.com/hdra/pelican-cait.git themes/pelican-cait&lt;/code&gt;. This'll probably save you build issues in the next section.&lt;/p&gt;
+&lt;h2&gt;Github Pages&lt;/h2&gt;
+&lt;p&gt;To put this on Github Pages, you'll want to use your &lt;code&gt;output&lt;/code&gt; folder as the &lt;code&gt;gh-pages&lt;/code&gt; branch, then it can be hosted as a Github Pages page. Follow the &lt;a href="https://gist.github.com/josefjezek/6053301"&gt;how to use Pelican on Github Pages&lt;/a&gt; and &lt;a href="https://github.com/getpelican/pelican/blob/master/docs/tips.rst#publishing-to-github"&gt;Publishing to Github&lt;/a&gt; tutorials.&lt;/p&gt;
+&lt;p&gt;Most simply:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ghp-import output&lt;/code&gt;. By typing &lt;code&gt;git branch&lt;/code&gt; you'll now see a &lt;code&gt;gh-pages&lt;/code&gt; branch.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push origin gh-pages&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Aside: or in one command, &lt;code&gt;make github&lt;/code&gt; which does the same thing.&lt;/p&gt;
+&lt;p&gt;If you are using an Organization/User page like us, you'll do things slightly different. You'll want &lt;em&gt;all&lt;/em&gt; of your generated files in the master branch. Do this in the beginning. &lt;/p&gt;
+&lt;p&gt;If you didn't do this in the beginning and want to now, keep reading. In this case, you don't have to call your branch &lt;code&gt;gh-pages&lt;/code&gt;, so we went with &lt;code&gt;source&lt;/code&gt;. However, originally I was working on all my source in the &lt;code&gt;master&lt;/code&gt; branch, but then wanted to shift this all over to a &lt;code&gt;source&lt;/code&gt; branch and then orphan my master and start it from scratch with the generated output.&lt;/p&gt;
+&lt;p&gt;If you've run across this, follow these instructions (&lt;a href="https://stackoverflow.com/questions/8762601/how-do-i-rename-my-git-master-branch-to-release/8762728#8762728"&gt;src&lt;/a&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;checkout&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;     &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;         &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;track&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;              &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;   &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If trying to delete your master branch with &lt;code&gt;git branch -D master&lt;/code&gt;, you'll get an error, but you can resolve it by going into your admin settings and changing the default branch to &lt;code&gt;source&lt;/code&gt;. This is so that Github knows what to serve up when people visit the site. Now you may repeat the command and it will work.&lt;/p&gt;
+&lt;p&gt;You can verify that &lt;code&gt;master&lt;/code&gt; was deleted by typing &lt;code&gt;git branch&lt;/code&gt;. Now we're going to start the master branch from scratch again with &lt;code&gt;git checkout --orphan master&lt;/code&gt;. Definitely check out the explanations in &lt;code&gt;git checkout --help&lt;/code&gt; and &lt;a href="https://help.github.com/articles/creating-project-pages-manually#lets-get-crackin"&gt;creating project pages manually&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That is, we're doing &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git checkout --orphan master&lt;/code&gt;. You can confirm that you're in a parentless tree with &lt;code&gt;git log&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;and clear out &lt;em&gt;everything&lt;/em&gt; with &lt;code&gt;git rm -rf .&lt;/code&gt; and &lt;code&gt;git clean&lt;/code&gt; the remainder, or manually &lt;code&gt;rm&lt;/code&gt; anything else . Double-check what you did with &lt;code&gt;git status&lt;/code&gt;. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now move the contents of your &lt;code&gt;output&lt;/code&gt; folder into the folder, then&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git commit -m 'output' -m 'pelican output to master branch'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push origin master&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See what's up with your beautiful &lt;a href="https://github.com/acm-sfsu/acm-sfsu.github.io/network"&gt;network&lt;/a&gt; graph.&lt;/p&gt;
+&lt;p&gt;Aside: You &lt;a href="https://github.com/blog/1706-descriptive-error-messages-for-failed-github-pages-builds"&gt;get emailed if the build fails&lt;/a&gt; when using Jekyll, but not when using Pelican or building otherwise. If you want to confirm, check in your admin settings whether it was built.&lt;/p&gt;
+&lt;p&gt;Hope to see you at an upcoming &lt;a href="/calendar"&gt;event&lt;/a&gt;, feel free to stop by in our IRC &lt;a href="http://webchat.freenode.net/?channels=acm-sfsu"&gt;#acm-sfsu&lt;/a&gt; if you have any questions,&lt;/p&gt;
+&lt;p&gt;Cheers,
+Tom&lt;/p&gt;</summary><category term="blogging about blogs"></category><category term="pelican"></category><category term="publishing"></category><category term="happy"></category><category term="templates"></category><category term="github pages"></category></entry><entry><title>Intro to Android Mobile App Development - Friday 2/21 @3pm, TH 335</title><link href="http://acm-sfsu.github.io/intro-to-android-mobile-app-development-friday-221-3pm-th-335.html" rel="alternate"></link><updated>2014-02-17T14:39:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2014-02-17:intro-to-android-mobile-app-development-friday-221-3pm-th-335.html</id><summary type="html">&lt;p&gt;Come learn about mobile app development in a fast-paced environment. The
+goal of this workshop is to take absolute beginners and prepare them to
+compete in the Google AdMob Student App Challenge.
+&amp;lt;&lt;a class="reference external" href="http://www.google.com/ads/admob/challenge.html"&gt;http://www.google.com/ads/admob/challenge.html&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;Download the IDE we'll be using here:
+&lt;a class="reference external" href="http://developer.android.com/sdk/index.html"&gt;http://developer.android.com/sdk/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Professor Puder's Android tutorial: &lt;a class="reference external" href="http://pear.sfsu.edu/csc780/tutorial/"&gt;pear.sfsu.edu/csc780/tutorial/&lt;/a&gt;&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Refreshments (i.e pizza, snacks) to be provided by representatives from AfterCollege.com.&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;AfterCollege is a service started in '99 to help college students discover relevant jobs and internships.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Intro to CS w/ Python</title><link href="http://acm-sfsu.github.io/intro-to-cs-w-python.html" rel="alternate"></link><updated>2014-02-09T20:45:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2014-02-09:intro-to-cs-w-python.html</id><summary type="html">&lt;p&gt;Our next event will be a student-led study session utilizing the Udacity
+course &amp;quot;Intro to Computer Science&amp;quot;
+(&lt;a class="reference external" href="https://www.udacity.com/course/cs101"&gt;https://www.udacity.com/course/cs101&lt;/a&gt;) taught by Professor Dave
+Evans. This event will provide students an introduction to the Python
+programming language while learning about the components of a modern
+search engine. Please enroll in this FREE online course and review the
+material before attending Friday's event. This is a Beginner-level
+course so if you've never programmed before or if you just want to learn
+a new language with a group of your fellow CS students, this event is
+for you. This event is going to be held on Friday 2/14 (Valentine's
+Day).&lt;/p&gt;
+</summary></entry><entry><title>Android Workshop Today</title><link href="http://acm-sfsu.github.io/android-workshop-today.html" rel="alternate"></link><updated>2013-11-21T16:50:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2013-11-21:android-workshop-today.html</id><summary type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
+&lt;p&gt;For those who are participating in the Android Workshop, this is the
+code we'll be working on today.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.dropbox.com/sh/grzzb85q8s82zui/COe6o_Z_v0"&gt;https://www.dropbox.com/sh/grzzb85q8s82zui/COe6o_Z_v0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This code can be used as a base for whatever you want to do with your
+application.&lt;/p&gt;
+</summary></entry><entry><title>First General Meeting of the 2013-2014 School Year - 9/11/2013</title><link href="http://acm-sfsu.github.io/first-general-meeting-of-the-2013-2014-school-year-9112013.html" rel="alternate"></link><updated>2013-09-06T07:03:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2013-09-06:first-general-meeting-of-the-2013-2014-school-year-9112013.html</id><summary type="html">&lt;p&gt;There will be a general meeting Wednesday, September 11 at 4:30pm in
+Science 164. &amp;nbsp;We will be planning upcoming events including
+Info-sessions, guest speakers, workshops, social events and career
+preparatory activities. If you have a great idea for the club this is
+the meeting to share it with everyone.&lt;/p&gt;
+&lt;p&gt;See you all there!&lt;/p&gt;
+&lt;p&gt;Bryce Simmer&lt;/p&gt;
+&lt;p&gt;President of the SFSU ACM&lt;/p&gt;
+</summary></entry><entry><title>ACM Student Chapter General Meeting Friday 4/19</title><link href="http://acm-sfsu.github.io/acm-student-chapter-general-meeting-friday-419.html" rel="alternate"></link><updated>2013-04-16T15:32:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2013-04-16:acm-student-chapter-general-meeting-friday-419.html</id><summary type="html">&lt;p&gt;Hello everyone!&lt;/p&gt;
+&lt;p&gt;There will be a general meeting this friday at 3pm in the CS Undergrad
+Lab( SCI 254). &amp;nbsp;We will be discussing whats to come next year for the
+club. &amp;nbsp;This includes panels, guest speakers, and possible
+workshops/events. &amp;nbsp;If you have an input as to what you want to see
+coming from the club I encourage you to show up and speak with us.&lt;/p&gt;
+&lt;p&gt;See everyone there!&lt;/p&gt;
+&lt;p&gt;Jonathan Lei&lt;/p&gt;
+&lt;p&gt;PS - If you're interested in an officer position this is the meeting to
+show up to.&lt;/p&gt;
+</summary></entry><entry><title>ACM first General Meeting of Spring 2013 3/12/13</title><link href="http://acm-sfsu.github.io/acm-first-general-meeting-of-spring-2013-31213.html" rel="alternate"></link><updated>2013-03-11T20:11:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2013-03-11:acm-first-general-meeting-of-spring-2013-31213.html</id><summary type="html">&lt;p&gt;Hello everyone!&lt;/p&gt;
+&lt;p&gt;The first general meeting will be held tomorrow in the CS Undergrad Lab
+(SCI 254) at 3pm. &amp;nbsp;This will be a short meeting discussing the upcoming
+events for the spring semester. &amp;nbsp;If you can't make it we will post up
+the things we discussed on the main site. &amp;nbsp; Hope to see you there.&lt;/p&gt;
+&lt;p&gt;ACM Pres.&lt;/p&gt;
+&lt;p&gt;Jonathan&lt;/p&gt;
+</summary></entry><entry><title>Processing Workshop Friday Nov. 16</title><link href="http://acm-sfsu.github.io/processing-workshop-friday-nov-16.html" rel="alternate"></link><updated>2012-11-13T22:10:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2012-11-13:processing-workshop-friday-nov-16.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Prof Hsu’s code from the past
+workshop:&lt;/strong&gt;&amp;nbsp;&lt;a class="reference external" href="http://userwww.sfsu.edu/~whsu/2012.3.2.ACM/"&gt;http://userwww.sfsu.edu/~whsu/2012.3.2.ACM/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hi everyone!&lt;/p&gt;
+&lt;p&gt;Prof. Hsu’s interface workshop will be this Friday, Nov. 16th 3PM!&lt;/p&gt;
+&lt;p&gt;This is a great&amp;nbsp;opportunity&amp;nbsp; to discover how code you write can interact
+with you through a device!&lt;/p&gt;
+&lt;p&gt;!UPDATE!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LOCATION IS :&amp;nbsp;&lt;/strong&gt;Blakeslee, Thornton Hall 10th Floor 3PM&lt;/p&gt;
+&lt;p&gt;In case you haven't been up there, this is the nice meeting room above
+the observatory.&lt;/p&gt;
+&lt;p&gt;Take the Thornton elevator to the 9th floor, walk just outside the
+elevator area and look&lt;/p&gt;
+&lt;p&gt;around for a door with a sign by it. Go up the stairs and you'll be
+there.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This will be an informal workshop/tutorial on working with interface
+devices beyond mouse and keyboard. We’ll use Processing, a Java-based
+environment that is easy to learn, but powerful enough to be used
+for real applications with graphics and animation.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Tentative list of topics:&lt;/em&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;quick overview of Processing basics&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;programming graphics/animation in Processing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OpenSoundControl (OSC) protocol&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;using TouchOSC with iPhone/iPod Touch and OSC&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;real-time camera input and OpenCV&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Kinect hacking&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&amp;nbsp;&lt;/strong&gt;Please read the following requirements as well as
+download/install the corresponding software before coming so we can
+start working right away.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Download Processing:&lt;/div&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="http://processing.org/download/"&gt;http://processing.org/download/&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Processing uses Quicktime for Java for video. This should work easily on the Mac.&lt;/div&gt;
+&lt;div class="line"&gt;Windows users should read the following:&lt;/div&gt;
+&lt;div class="line"&gt;&lt;cite&gt;http://wiki.processing.org/w/Video_Issues&lt;/cite&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Note: That whole video thing is kinda a turn off, I know&amp;nbsp;:)&amp;nbsp;I’ll be in the lab starting at 2 at the latest, so if you don’t want to fuss with this stuff come in and we’ll do it together.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Download OSC for Processing:&lt;/div&gt;
+&lt;div class="line"&gt;&lt;cite&gt;http://www.sojamo.de/libraries/oscP5/&lt;/cite&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Download Daniel Shiffman’s openkinect for Processing library:&lt;/div&gt;
+&lt;div class="line"&gt;&lt;cite&gt;http://www.shiffman.net/p5/kinect/&lt;/cite&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Also remember to bring a device to test on (perhaps a tablet or smart
+phone), and a laptop.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Windows users:&lt;/strong&gt;&amp;nbsp;In order to get video capture to work in Processing,
+it is likely you will need to install WinVDIG. You can find
+WinVDIG&amp;nbsp;&lt;cite&gt;here&lt;/cite&gt;. It seems that many people are recommending 1.01,
+personally though, only 1.05 is working for me. My setup is Quicktime 7
+and 1.05.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;: http://wiki.processing.org/w/Video_Issues&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;: http://www.sojamo.de/libraries/oscP5/&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;: http://www.shiffman.net/p5/kinect/&lt;/cite&gt;
+.. _here: &lt;a class="reference external" href="http://www.shiffman.net/vdig/"&gt;http://www.shiffman.net/vdig/&lt;/a&gt;&lt;/p&gt;
+</summary></entry><entry><title>WOWZAPP Hackathon Friday Nov. 9th</title><link href="http://acm-sfsu.github.io/wowzapp-hackathon-friday-nov-9th.html" rel="alternate"></link><updated>2012-10-31T16:40:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2012-10-31:wowzapp-hackathon-friday-nov-9th.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;THIS EVENT WILL BE ON A SCHOOL DAY DURING CLASS HOURS&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Microsoft will be hosting a worldwide hackathon with the release of
+Windows 8! &amp;nbsp;The focus of the hackathon will be app development for
+Windows 8. &amp;nbsp;With the release of Windows Surface RT and Windows 8 phone,
+Microsoft wants people to get a head start with developing applications
+on Windows 8.&lt;/p&gt;
+&lt;p&gt;If you're interested in this event, registration is free and they
+recommend that you bring a laptop with Windows 8 and Visual Studios 2012
+installed. &amp;nbsp;Not many of us have any real experience with app
+development, I myself have no experience at all, but this is a good
+chance to see other computer scientists come together and create
+something new. &amp;nbsp;Technology is always advancing and there is always
+something new around the corner, so if you're interested please come and
+join us to learn something new, or if you have experience, come to share
+and receive ideas from others.&lt;/p&gt;
+&lt;p&gt;This is the registration website with more in-depth information on the
+event including time and place:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.microsoft.com/student/en-us/wowzapp/eventpage.aspx?drop=63"&gt;http://www.microsoft.com/student/en-us/wowzapp/eventpage.aspx?drop=63&lt;/a&gt;&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Email me if you plan on attending to either my personal email or the acm email address:&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="mailto:jhlie&amp;#64;mail.sfsu.edu"&gt;jhlie&amp;#64;mail.sfsu.edu&lt;/a&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="mailto:acm.sfsu&amp;#64;gmail.com"&gt;acm.sfsu&amp;#64;gmail.com&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Hope to see some of you there!&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;Jonathan Lei&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ACM President&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;PS - &lt;em&gt;Again, please note that this event is being hosted on a school
+day, so if you plan skipping class this is a decision on your own
+accord.&lt;/em&gt;&lt;/p&gt;
+</summary></entry><entry><title>[12-10-19] ACM General Meeting</title><link href="http://acm-sfsu.github.io/12-10-19-acm-general-meeting.html" rel="alternate"></link><updated>2012-10-15T15:00:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2012-10-15:12-10-19-acm-general-meeting.html</id><summary type="html">&lt;p&gt;Hello everyone!&lt;/p&gt;
+&lt;p&gt;The next ACM General Meeting will be October 19, 2012.&lt;/p&gt;
+&lt;p&gt;We'll be playing board game and have pizza and soda.&lt;/p&gt;
+&lt;p&gt;If there's any question, please e-mail to the following address:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="mailto:acm.sfsu&amp;#64;gmail.com"&gt;acm.sfsu&amp;#64;gmail.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hope to see everyone there!&lt;/p&gt;
+</summary></entry><entry><title>ACM General Meeting / Lucas Arts Picnic</title><link href="http://acm-sfsu.github.io/acm-general-meeting-lucas-arts-picnic.html" rel="alternate"></link><updated>2012-09-25T20:46:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2012-09-25:acm-general-meeting-lucas-arts-picnic.html</id><summary type="html">&lt;p&gt;Hello everyone!&lt;/p&gt;
+&lt;p&gt;The next ACM General Meeting will be September 28th.&amp;nbsp; However we will be
+meeting at the Letterman Digital Arts Center for the Lucas Arts Picnic.
+This will be a very casual meeting for everyone, there will be snacks
+and refreshments.&amp;nbsp; We want to take this time to get to know some of the
+members and officers of the club, and also hear&amp;nbsp; your inputs for the
+club.&amp;nbsp; We encourage everyone to try to make it to this event.&amp;nbsp; We will
+be meeting there at 3 PM.&amp;nbsp; If you are planning to take public
+transportation here is a link on info on that:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://ch1prd0202.outlook.com/owa/redir.aspx?C=LYRGkEkwtkaP2-ODdiAu5muf9VkKbs8Ix8RaLPzImXomL2v5AVqd1PozoUUVzrleI3W1ha7K0j0.&amp;amp;URL=http%3a%2f%2fwww.onelettermandrive.com%2fpdf%2fldac_directions.pdf"&gt;http://www.onelettermandrive.com/pdf/ldac_directions.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you plan on attending please email me or Tim Bauer. We are also
+providing some rides if anyone needs it, but space is limited so please
+include that in the email if you are attending. We will be meeting in
+the visitors parking lot on Letterman Drive (the parking lot just off of
+Lombard).&amp;nbsp; There's a sercurity guard at the entrance, just tell him
+you're there visiting and he'll let you pass.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="mailto:timbauer&amp;#64;ymail.com"&gt;timbauer&amp;#64;ymail.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="mailto:acm.sfsu&amp;#64;gmail.com"&gt;acm.sfsu&amp;#64;gmail.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hope to see everyone there!&lt;/p&gt;
+&lt;p&gt;ACM President&lt;/p&gt;
+&lt;p&gt;Jonathan Lei&lt;/p&gt;
+</summary></entry><entry><title>ACM 1st General Meeting</title><link href="http://acm-sfsu.github.io/acm-1st-general-meeting.html" rel="alternate"></link><updated>2010-02-03T16:27:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2010-02-03:acm-1st-general-meeting.html</id><summary type="html">&lt;p&gt;Friday Feb. 5th&lt;/p&gt;
+&lt;p&gt;CS Undergrad Lab SCI 254&lt;/p&gt;
+&lt;p&gt;All afternoon event.&lt;/p&gt;
+&lt;p&gt;Lunch Buffet: Vegetarian Pasta, Chicken Katsu&lt;/p&gt;
+&lt;p&gt;Gaming Party starts after 2 PM&lt;/p&gt;
+&lt;p&gt;See Fliers posted in Lab/TH 331/ Department Office for details&lt;/p&gt;
+</summary></entry><entry><title>November Gaming Event</title><link href="http://acm-sfsu.github.io/november-gaming-event.html" rel="alternate"></link><updated>2009-11-13T04:49:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-11-13:november-gaming-event.html</id><summary type="html">&lt;p&gt;Time: Thursday November 19th 2009&lt;/p&gt;
+&lt;p&gt;Location: Computer Science Undergraduate Lab, Science Building 254&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Game Tournaments with various Prizes&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;X-Box&amp;nbsp; 360: Halo 2(Two spare controllers requested to host 4 way
+tournament)&lt;/li&gt;
+&lt;li&gt;N64: Goldeneye/Smash Brother&lt;/li&gt;
+&lt;li&gt;PC: Unreal Tournament 1&lt;/li&gt;
+&lt;li&gt;Starcraft Broodwar. (Personal Laptop Required)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Come join us for the last gaming event scheduled for this semester.&lt;/p&gt;
+&lt;p&gt;Chapter Members will be provided with food, snacks and drinks.&lt;/p&gt;
+</summary></entry><entry><title>November General Meeting</title><link href="http://acm-sfsu.github.io/november-general-meeting.html" rel="alternate"></link><updated>2009-11-01T23:41:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-11-01:november-general-meeting.html</id><summary type="html">&lt;p&gt;Thursday November 5th&lt;/p&gt;
+&lt;p&gt;Time: Around Noon&lt;/p&gt;
+&lt;p&gt;Location: TBD most likely either SCI 256 or the Undergraduate Lab&lt;/p&gt;
+&lt;p&gt;-We'll be discussing the upcoming job search and resume review workshop
+hosted by the CS Dept. Chair.&lt;/p&gt;
+&lt;p&gt;-The Next Lan Party, tentatively scheduled the Thursday before
+Thanksgiving recess.&lt;/p&gt;
+&lt;p&gt;-The trip to Mountain View and why most people could not make it.&lt;/p&gt;
+&lt;p&gt;-Game Mod Programming Team: HL2 Source Development Kit&lt;/p&gt;
+</summary></entry><entry><title>Upcoming Computer History Museum Trip</title><link href="http://acm-sfsu.github.io/upcoming-computer-history-museum-trip.html" rel="alternate"></link><updated>2009-10-10T01:49:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-10-10:upcoming-computer-history-museum-trip.html</id><summary type="html">&lt;p&gt;Date: Friday &amp;quot;Furlough Day&amp;quot; October 23rd 2009&lt;/p&gt;
+&lt;p&gt;Place: 1401 N Shoreline Blvd Mountain View, CA 94043&lt;/p&gt;
+&lt;p&gt;Time: Arrival by Noon (12:00 to 3:00 PM)&lt;/p&gt;
+&lt;p&gt;FREE ADMISSION!&lt;/p&gt;
+&lt;p&gt;To take advantage of an upcoming mandatory closed campus day the S.F.
+State Chapter of ACM is organizing an upcoming trip to the Computer
+History Museum, this time anyone -regardless of campus affiliation is
+welcome to join us, we're especially looking for drivers willing to
+carpool, otherwise we'll have to meet up at 9-10 AM to take Cal Tran and
+on site local transportation.&lt;/p&gt;
+&lt;p&gt;www.&lt;strong&gt;computerhistory&lt;/strong&gt;.org&lt;/p&gt;
+&lt;p&gt;Please contact me at rdesmond &amp;#64; sfsu.edu for further details or to RSVP.&lt;/p&gt;
+&lt;p&gt;-Sincerely Simon J. Lew; CS Lab Assistant, S.F. State ACM Chapter
+President.&lt;/p&gt;
+</summary></entry><entry><title>GENERAL MEETING II</title><link href="http://acm-sfsu.github.io/general-meeting-ii.html" rel="alternate"></link><updated>2009-10-02T04:24:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-10-02:general-meeting-ii.html</id><summary type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
+&lt;p&gt;We'll be hosting our second General Meeting in the &lt;strong&gt;CS Undergraduate
+Lab, SCI 254 on Wednesday October 7th 2009&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;On it we will discuss our upcoming trip to Mountain View to the Computer
+History Museum on Furlough Friday the 23rd and other plans for the near
+future.&lt;/p&gt;
+&lt;p&gt;Also on our agenda is a chance to gain feedback and responses from our
+members on what ACM should be focusing on as a goal, or expectations on
+future actions.&lt;/p&gt;
+&lt;p&gt;Please let us know if you would like to attend but Wednesday afternoons
+are not particularly good times to host general meetings. The plan is to
+host Novembers meeting on Tuesday or Thursday to accommodate those
+excluded by scheduling conflicts.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;&lt;em&gt;On the Lunch Menu we have:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Chicken Katsu (XL Platter this time), Fried Rice, Vegetarian
+Spheghetti, and Potato Salad.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Drinks include Soda and Water.&lt;/em&gt;&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;&lt;strong&gt;ADDENDUM:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chapter Vice President Teague Sterling will be hosting a CAT-5 Ethernet
+cable making seminar in the &lt;strong&gt;Undergradulate Lab on&lt;/strong&gt; &lt;strong&gt;Tuesday the 6th
+at 2 PM&lt;/strong&gt;, volunteers and all those interested please show up at the
+appointed hour, as an added incentive you may create one long cable (up
+to 5 yards) for yourselves to take with you, no questions asked.&lt;/p&gt;
+&lt;p&gt;-Simon J. Lew; CS Lab Assistant, S.F. State ACM Chapter President.&lt;/p&gt;
+</summary></entry><entry><title>EVENT: ACM GAMING NIGHT</title><link href="http://acm-sfsu.github.io/event-acm-gaming-night.html" rel="alternate"></link><updated>2009-09-18T01:07:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-09-18:event-acm-gaming-night.html</id><summary type="html">&lt;p&gt;This semesters first Gaming Night will be held on Friday September 25th
+2009&lt;/p&gt;
+&lt;p&gt;Location: CS Undergraduate Lab, Science Building 254, from 12:00 - 9:00
+pm&lt;/p&gt;
+&lt;p&gt;Food and drink will be served, Costco Pizzas and Popeye Fried Chicken
+planned.&lt;/p&gt;
+&lt;p&gt;We're borrowing CS Department Projectors and Sound Equipment&lt;/p&gt;
+&lt;p&gt;No real prizes planned, but bragging rights will be awarded to winners.&lt;/p&gt;
+&lt;p&gt;Looking for volunteers to provide game consoles and or games, see
+below...&lt;/p&gt;
+&lt;p&gt;As always, everyone with proper key access to the lab is welcomed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EVENT HIGHLIGHTS&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Laptop Starcraft Broodwar Lan Tournament&lt;/li&gt;
+&lt;li&gt;N64 (Planned Goldeneye Tournament)&lt;/li&gt;
+&lt;li&gt;X-Box (Probably Halo 1/2... TBA)&lt;/li&gt;
+&lt;li&gt;Nintendo Wii (TBA)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;WANTED ITEMS/EQUIPMENT:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;N64 Golden Eye and spare controller (Thanks Mike)&lt;/li&gt;
+&lt;li&gt;PS3 with Street Fighter 4 for Tournament&lt;/li&gt;
+&lt;li&gt;Nintendo Wii System with Mario Kart, Brawl&lt;/li&gt;
+&lt;li&gt;Speaker Systems or anything else...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Questions, comments, and of course volunteers welcomed, you can find me
+in the lab,&lt;/p&gt;
+&lt;p&gt;or our VP Teague Sterling up in the Department. Contact me at rdesmond
+at sfsu.edu&lt;/p&gt;
+&lt;p&gt;-Simon J. Lew; CS Lab Assistant, S.F. State ACM Chapter President&lt;/p&gt;
+</summary></entry><entry><title>Advising Day</title><link href="http://acm-sfsu.github.io/advising-day.html" rel="alternate"></link><updated>2009-08-25T01:36:00-07:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-08-25:advising-day.html</id><summary type="html">&lt;p&gt;Aug 24th 2009&lt;/p&gt;
+&lt;p&gt;Miniature chocolates and cookies were freely offered for those stuck
+waiting in long lines during advising day today.&lt;/p&gt;
+&lt;p&gt;A pizza party was held in TH 331 where students and faculty joined a
+question and answer session hosted by Department Chair: Dr. Petkovic.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: All previous memberships has expired, old members, please
+renew your membership with SFSU ACM as the recruitment drive continues
+during the first few weeks of instructions.&lt;/p&gt;
+&lt;p&gt;Thank you.&lt;/p&gt;
+&lt;p&gt;-Simon J. Lew, President SFSU ACM&lt;/p&gt;
+</summary></entry><entry><title>Calendar and Book Loan</title><link href="http://acm-sfsu.github.io/calendar-and-book-loan.html" rel="alternate"></link><updated>2009-02-03T21:43:00-08:00</updated><author><name>Administrator</name></author><id>tag:acm-sfsu.github.io,2009-02-03:calendar-and-book-loan.html</id><summary type="html">&lt;p&gt;Using google applications, the Book Loan page is now displaying a
+real-time listing of the book library. Also, a new page &amp;quot;Calendar&amp;quot; was
+created to show all ACM events.&lt;/p&gt;
+</summary></entry></feed>
