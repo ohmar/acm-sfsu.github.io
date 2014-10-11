@@ -17,8 +17,10 @@ SASS_OUT=$(BASEDIR)/themes/$(THEME_NAME)/static/css
 
 # for Post and Page
 TOPIC ?= awesome title
-POSTFILE = $(shell date "+$(INPUTDIR)/%Y-%m-%d-$(TOPIC).md" | sed -e y/\ /-/)
+title ?= $(TOPIC)
+POSTFILE = $(shell date "+$(INPUTDIR)/%Y-%m-%d-$(title).md" | sed -e y/\ /-/)
 PAGEFILE = "$(INPUTDIR)/pages/$(TOPIC).md" | sed -e y/\ /-/
+DATE = $(shell date +"%Y-%m-%d %R")
 
 FTP_HOST=localhost
 FTP_USER=anonymous
@@ -47,8 +49,12 @@ help:
 	@echo '                                                                       '
 	@echo 'Usage:                                                                 '
 	@echo '   make html                        (re)generate the web site          '
+	@echo '   make sass                        generates css from sass dir        '
+	@echo '   make all                         generates sass and html            '
+#	@echo '   make regenerate                  regenerate files upon modification '
+	@echo '   make regenerate_html             regenerate html when modified      '
+	@echo '   make regenerate_sass             regenerates css from sass          '
 	@echo '   make clean                       remove the generated files         '
-	@echo '   make regenerate                  regenerate files upon modification '
 	@echo '   make publish                     generate using production settings '
 	@echo '   make serve [PORT=8000]           serve site at http://localhost:8000'
 	@echo '   make devserver [PORT=8000]       start/restart develop_server.sh    '
@@ -60,9 +66,8 @@ help:
 	@echo '   make s3_upload                   upload the web site via S3         '
 	@echo '   make cf_upload                   upload the web site via Cloud Files'
 	@echo '   make github                      upload the web site via gh-pages   '
-	@echo '   make post                        begin a new post in INPUTDIR       '
+	@echo '   make post [title='mytitle']      begin a new post in INPUTDIR       '
 	@echo '   make page                        create a new page in INPUTDIR/pages'
-	@echo '   make sass                        regenerates css from sass dir      '
 	@echo '                                                                       '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html'
 	@echo '                                                                       '
@@ -70,11 +75,21 @@ help:
 html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
+regenerate_html:
+	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
+
+sass:
+	sass --update $(SASS_IN):$(SASS_OUT)
+
+regenerate_sass:
+	sass --watch $(SASS_IN):$(SASS_OUT)
+
+all: sass html
+
+regenerate: regenerate_sass regnerate_html
+
 clean:
 	[ ! -d $(OUTPUTDIR) ] || rm -rf $(OUTPUTDIR)
-
-regenerate:
-	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
 serve:
 ifdef PORT
@@ -120,18 +135,26 @@ github: publish
 	ghp-import $(OUTPUTDIR)
 	git push origin $(OUTPUT_BRANCH)
 
-post: 
-	echo "Title: $(TOPIC)" >> $(POSTFILE)
-	echo "Date: $(DATE)" >> $(POSTFILE)
-	echo "Modified:" >> $(POSTFILE)
-	echo "Category:" >> $(POSTFILE)
-	echo "Tags:" >> $(POSTFILE)
-	echo "Slug: $(TOPIC)" >> $(POSTFILE)
-	echo "Authors: SFSU-ACM" >> $(POSTFILE)
-	echo "Authors_Sites: https://github.com/acm-sfsu" >> $(POSTFILE)
-	echo "Summary:" >> $(POSTFILE)
-	xdg-open $(POSTFILE)
-	@echo 'post successfully made at $(POSTFILE)'
+post:
+ifneq ($(wildcard $(POSTFILE)),)
+	@read -r -p "File $(title) already exists! Modify? (y/n):" REPLY; \
+	[ $$REPLY = "y" ] || (echo Nothing done for post.; exit 1;)
+	@sed 's/Modified:.*/Modified: $(DATE)/' $(POSTFILE) > $(POSTFILE).tmp
+	@mv $(POSTFILE).tmp $(POSTFILE)
+	@xdg-open $(POSTFILE) || open $(POSTFILE)
+else 
+	@echo "Title: $(title)" > $(POSTFILE)
+	@echo "Date: $(DATE)" >> $(POSTFILE)
+	@echo "Modified:" >> $(POSTFILE)
+	@echo "Category:" >> $(POSTFILE)
+	@echo "Tags:" >> $(POSTFILE)
+	@echo "Slug: $(title)" >> $(POSTFILE)
+	@echo "Authors: SFSU-ACM" >> $(POSTFILE)
+	@echo "Authors_Sites: https://github.com/acm-sfsu" >> $(POSTFILE)
+	@echo "Summary:" >> $(POSTFILE)
+	@xdg-open $(POSTFILE) || open $(POSTFILE)
+	@echo 'post successfully made at $(POSTFILE).' 
+endif
 
 page: 
 	echo "Title: $(TOPIC)" >> $(PAGEFILE)
@@ -144,7 +167,4 @@ page:
 	xdg-open $(PAGEFILE)
 	@echo 'page successfully made at $(PAGEFILE)'
 
-sass:
-	sass --watch $(SASS_IN):$(SASS_OUT)
-
-.PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github post page sass
+.PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github post page sass all regenerate_html regenerate_sass

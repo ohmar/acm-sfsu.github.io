@@ -4,10 +4,11 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Tom Spalding'
 SITENAME = u'ACM at SFSU'
-SITEURL = 'http://acm-sfsu.github.io'
+SITEURL = 'http://sfsu.acm.org'
+SITEDESC = "Hi, we're the ACM chapter at SFSU. We're students who like computer science."
 GITHUB_USERNAME = 'acm-sfsu'
 GITHUB = 'https://github.com/'+GITHUB_USERNAME
-GITHUB_SITE = 'https://github.com/'+GITHUB_USERNAME+'/'+GITHUB_USERNAME+'.github.io'
+GITHUB_SITE = 'https://github.com/'+GITHUB_USERNAME+'/'+'sfsu.acm.org'
 CONTACT_EMAIL = 'acm.sfsu@gmail.com'
 AUTHOR_EMAIL = CONTACT_EMAIL # default gravatar email
 DISQUS_SITENAME = 'acm-sfsu'
@@ -46,7 +47,7 @@ SOCIAL = (('envelope-alt','mailto:'+CONTACT_EMAIL),
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+RELATIVE_URLS = False
 
 PATH = 'content'
 OUTPUT_PATH = 'output'
@@ -54,15 +55,23 @@ THEME = "themes/pelican-cait"
 
 # static paths will be copied under the same name
 IMG_PATH = 'images'
+CODE_DIR = 'code' #For liquid_tags.include_code, default is `code` in the content directory.
+NOTEBOOK_DIR = 'notebooks' #For liquid_tags.notebook, default is 'notebooks'
 GALLERY_PATH = IMG_PATH+'/gallery'
-STATIC_PATHS = [IMG_PATH, ]
+STATIC_PATHS = [IMG_PATH, CODE_DIR, NOTEBOOK_DIR]
+
+# For liquid_tags.notebook
+EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
 
 # to disable, comment out
 FAVICON = IMG_PATH+'/icons/favicon.ico' 
 #moved icon to main path until solve thumbnailer icon exception
 
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['gravatar', 'gallery', 'github_activity', 'share_post', 'thumbnailer','render_math']
+PLUGINS =  ['gravatar', 'gallery', 'github_activity', 'share_post', 'thumbnailer','render_math',
+			'neighbors', 'liquid_tags.notebook', 'liquid_tags.img', 'liquid_tags.video',
+			'liquid_tags.youtube', 'liquid_tags.vimeo', 'liquid_tags.include_code', 'liquid_tags.notebook'] 
+
 
 # THUMBNAIL_DIR is the path to the output sub directory where the thumbnails are generated
 THUMBNAIL_DIR = GALLERY_PATH+'/thumbnails'
